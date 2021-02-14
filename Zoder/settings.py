@@ -28,19 +28,7 @@ SECRET_KEY = 'msel$7^*%fjg3!m4ky$g!d2_nhstow&+chi9(b2y$(xx!(_(wg'
 DEBUG = False
 
 # ALLOWED_HOSTS = ['localhost','127.0.0.1']
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD:Zoder/settings.py
 ALLOWED_HOSTS = ['localhost','127.0.0.1','zoderbook.pythonanywhere.com']
-=======
-ALLOWED_HOSTS = []
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.):iCoder/settings.py
-=======
-ALLOWED_HOSTS = ['localhost']
->>>>>>> 9fbc591 (Added requirements.txt file and made changes for deployment)
-=======
-ALLOWED_HOSTS = ['localhost','zoder.herokuapp.com']
->>>>>>> 0db6451 (added domain in hosts)
 
 
 # Application definition
@@ -58,12 +46,10 @@ INSTALLED_APPS = [
     'home',
     'ckeditor',
     'django_email_verification',
-<<<<<<< HEAD:Zoder/settings.py
     'django_queue_mailer',
-=======
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.):iCoder/settings.py
     'Zoder',
     'django_cleanup.apps.CleanupConfig',
+    # 'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -184,24 +170,18 @@ def verified_callback(user):
 
 EMAIL_ACTIVE_FIELD = 'is_active'
 EMAIL_VERIFIED_CALLBACK = verified_callback
-<<<<<<< HEAD:Zoder/settings.py
-EMAIL_TOKEN_LIFE = 60 * 60 * 10
-# EMAIL_SERVER = socket.gethostbyname('smtp.gmail.com')
-EMAIL_SERVER = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_ADDRESS = 'zoderadmn781@gmail.com' #email address using for sending an email
-EMAIL_FROM_ADDRESS = 'Zoder Team <noreply@zoderadmin.com>'
-EMAIL_PASSWORD = 'youremail-app-password'
-=======
 EMAIL_TOKEN_LIFE = 60 * 6
 EMAIL_SERVER = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_ADDRESS = 'zoderadmn781@gmail.com'
+EMAIL_ADDRESS = 'your email'
 EMAIL_FROM_ADDRESS = 'Zoder Team <noreply@zoderadmin.com>'
-EMAIL_PASSWORD = 'wngnhtvrhaumlphe'
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.):iCoder/settings.py
+EMAIL_PASSWORD = 'your password'
 EMAIL_MAIL_SUBJECT = 'Zoder admin: Confirm Email'
 EMAIL_MAIL_HTML = 'verify/mail_body.html'
 EMAIL_MAIL_PLAIN = 'verify/mail_body.txt'
 EMAIL_PAGE_TEMPLATE = 'verify/confirm_template.html'
-EMAIL_PAGE_DOMAIN = 'https://zoder.herokuapp.com/'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+
+# CRONJOBS = [
+#     ('*/1 * * * *','home.cron.verifyuser')
+# ]

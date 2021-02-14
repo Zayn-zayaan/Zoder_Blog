@@ -136,8 +136,13 @@ def handlesignup(request):
 
             user_verify = User.objects.get(email=email,username=username)
             user_verify.is_active = False
+<<<<<<< HEAD
             send_email_task(user_verify)
             messages.error(request, "Your account has created. Please verify your email.We have emailed you a verification link. You will get that within 30 mins.")
+=======
+            messages.error(request, "Please verify your email.We have emailed you a verification link.")
+            send_email(user_verify)
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
             return redirect('home')
 
         else:
@@ -161,7 +166,11 @@ def handlelogin(request):
             messages.success(request, "Successfully logged in")
             return redirect('home')
         elif user_verify.is_active == False:
+<<<<<<< HEAD
             messages.error(request, "Please verify your email first to login.")
+=======
+            messages.error(request, "Please verify your email.We have emailed you a verification link.")
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
             return redirect('home')
         else:
             messages.error(request, "Invalid Credentials: Please try again")
@@ -204,7 +213,6 @@ def edit_blog(request, slug):
     )
     context['form'] = form
     return render(request, "blog/edit_blog.html", context)
-<<<<<<< HEAD
 
 def edituser(request):
     context = {}
@@ -257,7 +265,8 @@ def sendEmail(request):
         email = request.POST.get('email')
         user = User.objects.get(email=email)
         if user.is_active == False:
-            Emailthread(email).start()
+            # Emailthread(email).start()
+            send_email(user)
             messages.success(request, "Please verify your email.We have emailed you a verification link. You will get that within 30 mins.")
             return redirect('home')
         else:
@@ -265,77 +274,12 @@ def sendEmail(request):
             return redirect('home')
     return render(request, 'verify/verify_email.html')
 
-=======
-
-def edituser(request):
-    context = {}
-    if not request.user.is_authenticated:
-        messages.error(request, "must authenticate first")
-        return redirect("home")
-    if request.POST:
-        username = request.POST['username']
-        email = request.POST['email']
-        dp = request.POST.get('dp')
-
-        if User.objects.filter(username=username).exists() and request.user.username != username:
-            messages.error(request, "Uername already exists. Choose unique username")
-            return redirect('home')
-        if User.objects.filter(email=email).exists() and request.user.email != email:
-            messages.error(request, "email already exists. Please Log in")
-            return redirect('home')
-        if " " in username:
-            messages.error(request, "Username cannot contain spaces")
-            return redirect('home')
-            
-        Post.objects.filter(author=str(request.user)).update(author=username)
-        form = update_account_form(request.POST or None, instance=request.user)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.save()
-            messages.success(request, "Your account has been successfully updated")
-
-    form = update_account_form(
-        initial={
-            "email": request.user.email,
-            "username": request.user.username,
-        }
-    )
-    context['form'] = form
-    return render(request, "home/edituser.html", context)
-
-class custom_password_change(PasswordChangeView):
-    template_name = 'home/change-password.html'
-    success_url = '/'
-
-    def form_valid(self, form):
-        messages.success(self.request, "Your password has been succesfully updated")
-        return super().form_valid(form)
-
-@csrf_exempt
-def sendEmail(request):
-    if request.POST:
-        email = request.POST.get('email')
-        user = User.objects.get(email=email)
-        if user.is_active == False:
-            send_email(user)
-            messages.success(request, "Please verify your email.We have emailed you a verification link.")
-            return redirect('home')
-        else:
-            messages.success(request, "Your email is already verified")
-            return redirect('home')
-    return render(request, 'verify/verify_email.html')
-
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
 def edit_dp(request):
     context={}
     if not request.user.is_authenticated:
         messages.error(request, "must authenticate first")
         return redirect("home")
-<<<<<<< HEAD
     update_dp = get_object_or_404(profile, username=str(request.user))
-=======
-    update_dp = get_object_or_404(profile, username=request.user)
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
 
     if request.POST:
         form = update_dp_form(request.POST or None, request.FILES or None, instance = update_dp)

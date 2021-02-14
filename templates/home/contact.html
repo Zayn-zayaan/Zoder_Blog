@@ -13,7 +13,7 @@
 <div class="container offset-lg-3 mt-3 ">
     <form id="contactform" method="post" action="/contact">
         {% csrf_token %}
-        <h3 style="text-align: center;">Contact Zoder admin</h3>
+        <h2 style="text-align: center;">Contact Zoder admin</h2>
         <div id="contactform" class="form-group mt-4">
             <label for="name">Names</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Your Name...">
@@ -32,7 +32,7 @@
             <textarea class="form-control" id="content" name="content" rows="6"></textarea>
         </div>
         <div id="contactform">
-            <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            <button type="submit" class="btn btn-primary mb-4 mt-2">Submit</button>
         </div>
         
     </form>

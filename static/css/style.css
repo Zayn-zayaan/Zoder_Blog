@@ -105,9 +105,6 @@ font-size: x-large;
 width: 500px;
 }
 
-#contactform {
-width: fit-content;
-}
 
 /*responsive*/
 @media(max-width: 790px){
@@ -127,9 +124,6 @@ margin-right: 10px;
 {
 #searchform{
 margin-bottom: 10px;
-}
-#contactform {
-width: 200px;
 }
 }
 @media only screen and (max-width:700px) {

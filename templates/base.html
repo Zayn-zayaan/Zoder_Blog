@@ -39,9 +39,9 @@
             <a class="nav-link" href="/contact">Contact</a>
           </li>
         </ul>
-        <div class="ml-auto form-inline">
-          <form method="get" action="/search" class=" my-2 my-lg-0 mr-3">
-            <input id="searchform" class="form-control" type="search" placeholder="Search..." name="query" id="query"
+        <div class="m-0 form-inline">
+          <form method="get" action="/search" class="search my-2 my-lg-0 mr-3">
+            <input id="searchform" style="max-width: 400px;" class="form-control" type="search" placeholder="Search..." name="query" id="query"
               aria-label="Search">
             <button id="sbtn" class="sbtn btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
@@ -60,7 +60,6 @@
           </ul>
 
 
-<<<<<<< HEAD
           {% else %}
           <!-- Button trigger  Sign upmodal -->
           <button type="button" class="rbton btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
@@ -75,21 +74,6 @@
           <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
           {% endif %}
         </div>
-=======
-        {% else %}
-        <!-- Button trigger  Sign upmodal -->
-        <button type="button" class="btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
-          data-target="#signupmodal">
-          Sign up
-        </button>
-        <!-- Button trigger  login modal -->
-        <button type="button" class="btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
-          data-target="#loginmodal">
-          Login
-        </button>
-        <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-        {% endif %}
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
       </div>
     </nav>
 
@@ -160,7 +144,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <!-- Login Modal -->
     <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -192,40 +175,6 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-=======
-  </div>
-  <!-- Login Modal -->
-  <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginmodaltitle">Login here</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/login" method="post">{% csrf_token %}
-            <div class="form-group">
-              <label for="loginusername">Username</label>
-              <input type="text" class="form-control" id="loginusername" name="loginusername"
-                placeholder="Enter username" required>
-            </div>
-            <div class="form-group">
-              <label for="loginpass">Password</label>
-              <input type="password" class="form-control" id="loginpass" name="loginpass"
-                placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <br /><br />
-            <a href="/password-reset">Forgot password?</a>
-            <br />
-            <a href='send_email/'>Verify Email</a> if not already.
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
 
           </div>
         </div>
