@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = 'msel$7^*%fjg3!m4ky$g!d2_nhstow&+chi9(b2y$(xx!(_(wg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost','127.0.0.1']
 ALLOWED_HOSTS = ['localhost','127.0.0.1','zoderbook.pythonanywhere.com']
@@ -138,12 +138,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
