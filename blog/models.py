@@ -8,6 +8,7 @@ from ckeditor.fields import RichTextField
 class profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     dp   = models.ImageField(upload_to='images')
+    username = models.CharField(max_length=100)
 
     def __str__(self):
         return self.user.username
@@ -69,6 +70,11 @@ class usercount(models.Model):
     def __str__(self):
         return self.user
     
-
+def delete_file_if_unused(model, instance, field, instance_file_field):
+    dynamic_field = {}
+    dynamic_field[field.name] = instance_file_field.name
+    others_refs_exist = model.objects.filter(**dynamic_field).exclude(pk=instance.pk).exists()
+    if not others_refs_exist:
+        instance_file_field.delete(False)
 
 

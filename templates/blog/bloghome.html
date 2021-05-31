@@ -1,34 +1,122 @@
 {% extends 'base.html' %}
-
 {% block js %}
 <script>
     Let previews = document.getElementsByClassName('preview');
-    Array.from(previews).forEach((element)=>{
+    Array.from(previews).forEach((element) => {
         element.innerHTML = element.innerText
     })
 </script>
 {% endblock js %}
 {% block blogactive %} active {% endblock %}
 {% block content %}
-    <div class="container my-3">
-        <h2>Coding articles by iCoder: </h2>
-        {% for post in allposts %}
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                  <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }} ({{post.views}} views)</strong>
-                  <h3 class="mb-0"><a class="text-dark" href="/blog/{{ post.slug }}">{{ post.title }}</a></h3>
-                  <div class="mb-1 text-muted">{{ post.date }}</div>
-                  <div class="preview"><p class="card-text mb-auto">{{ post.content|safe | truncatechars:300 }}</p></div>
-                  <div class="my-2">
-                      <a href="/blog/{{ post.slug }}" role="button" class="btn btn-primary">Continue reading</a>
-                  </div>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 
+    body {
+        background-color: rgba(220, 220, 220, 0.6);
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .card {
+        width: 62%;
+        margin: 20px;
+    }
+
+    .card-text {
+        padding: 20px;
+    }
+
+    .lorem {
+        width: 32%;
+        float: right;
+        margin-right: 20px;
+        background-color: white;
+        box-shadow: 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .clearfix {
+        height: 100%;
+        position: relative;
+
+    }
+    .pa{
+        margin-left: 20px;
+    }
+    @media only screen and (max-width:800px) {
+
+        .lorem {
+            width: 95%;
+            float: none;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .card {
+            width: 95%;
+            clear: both;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+<div class="clearfix my-3">
+    <h2 style="margin:30px;">Coding articles on Zoder: </h2>
+    <div class="lorem" style="border-radius: 20px;">
+        <div
+            style="text-align: center;padding: 10px;background: rgba(150, 150, 150, 0.6);height: 100px;margin-bottom: 10px;border-radius: 20px 20px 0 0;">
+            <h3 style="top: 50%;transform: translateY(50%);">Popular posts</h2>
+        </div>
+        <div class="container">
+            {% for post in posts %}
+            <div style="width: 100%;" class="row p-0 m-0">
+                <div class="col-3"><img style="height:50px; width: 70px;padding: 5px;" src="{{post.image.url}}"
+                        alt="..."></div>
+                <div style=margin-right:0px; class="col-8 pa">
+                    <p><a href="/blog/{{ post.slug }}">  {{post.title}}</a><br><span
+                            style="font-size: small;" class="text-muted">  {{post.author}}</span></p>
                 </div>
-                <div class="col-md-4 p-4">
-                    <img style="height: 270px; width: 270px; margin-left: 40px;" src="{{ post.image.url }}" class="card-img" alt="...">
-                </div>
+
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+
     </div>
+
+    {% for post in allposts %}
+
+    <div class="card" style="border-radius: 30px;">
+        <div class="card-img p-0 m-0">
+            <img style="height: 270px;border-radius: 30px 30px 0 0;" src="{{ post.image.url }}" class="card-img" alt="...">
+        </div>
+        <div class="card-text">
+            <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }}({{post.views}} view{{ post.views|pluralize}})</strong>
+            <h3 class="mb-0"><a class="text-dark" href="/blog/{{ post.slug }}">{{ post.title }}</a></h3>
+            <div class="mb-1 text-muted">{{ post.date }}</div>
+            <div class="preview">
+                <p style="margin-top: -20px;" class="card-text mb-auto">{{ post.content|safe | truncatechars:300 }}</p>
+            </div>
+            <div class="my-2">
+                <a href="/blog/{{ post.slug }}" role="button" class="btn btn-primary">Continue reading</a>
+                {% if post.author == user %}
+                <a href="/blog/{{ post.slug }}/edit" class="btn btn-primary">Update</a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% include 'pagination.html' with page=allposts %}
+</div>
 {% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style type="text/css">
+    .h3 {
+        text-align: center;
+    }
+
+    body,
+    html {
+        background-image: url('https://i.imgur.com/xhiRfL6.jpg');
+        height: 100%;
+    }
+
+    .h-80 {
+        height: 80% !important;
+    }
+</style>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="container h-80">
+    <div class="row align-items-center h-100">
+<<<<<<< HEAD
+        <div style="align-items: center;margin-left: -3rem;margin-top: 2rem;" class="col-3 mx-auto">
+            <div class="text-center">
+                <br /><br />
+                <h3 style="color: navajowhite;margin"><i>Change DP</i></h3>
+                <div style="height: 243px;width: 202px;margin-left: -3rem;margin-top: 2rem;">
+=======
+        <div class="col-3 mx-auto">
+            <div class="text-center">
+                <br /><br />
+                <h3 style="color: navajowhite;"><i>Change DP</i></h3>
+                <div style="height: 243px;width: 202px;align-items: center;">
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
+                    <form method="POST" style="background-color: white;" enctype="multipart/form-data" class="form-signin">{% csrf_token %}
+                        <label for="image">Current profile pic</label>
+                        <img id="image" name="image" style="width: 100%; height: 100%" src="{{ form.initial.dp.url }}">
+                        <label for="dp">Change profile pic</label>
+                        <input src="{{form.initial.dp.url}}" type="file" class="form-control" id="dp" name="dp"
+                            accept="image/*">
+
+                        {% for field in form %}
+                        <p>
+                            {% for error in field.errors %}
+                        <p style="color: red;">{{error}}</p>
+
+                        {% endfor %}
+                        </p>
+
+
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                        <div style="color: red;">
+                            <p>{{form.non_field_errors}}</p>
+                        </div>
+                        {% endif %}
+
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br /><br /><br /><br /><br />
+{% endblock content %}

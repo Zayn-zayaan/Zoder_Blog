@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style type="text/css">
+  .h3 {
+    text-align: center;
+  }
+
+  body,
+  html {
+    background-image: url('https://i.imgur.com/xhiRfL6.jpg');
+    height: 100%;
+  }
+
+  #profile-img {
+    height: 180px;
+  }
+
+  .h-80 {
+    height: 80% !important;
+  }
+</style>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <div class="container h-80">
+    <div class="row align-items-center h-100">
+      <div class="col-3 mx-auto">
+<<<<<<< HEAD
+        <div style="width: max-content;" class="text-center">
+          <br /><br /><br />
+          
+          
+          <form method="POST" style="margin-left: -4rem;" class="form-signin">{% csrf_token %}
+            <h3 style="color: navajowhite;"><i>Account</i></h3>
+            <a style="width: 80px;height: 80px;border-radius: 50%;display: inline-block;background-size: cover;background-position: center;background-image: url({{request.user.profile.dp.url}});" href="{{ request.user.profile.dp.url }}" id="profile-img" class="rounded-circle profile-img-card"></a>
+=======
+        <div class="text-center">
+          <br /><br /><br />
+          <h3 style="color: navajowhite;"><i>Account</i></h3>
+          <a style="width: 80px;height: 80px;border-radius: 50%;display: inline-block;background-size: cover;background-position: center;background-image: url({{request.user.profile.dp.url}});" href="{{ request.user.profile.dp.url }}" id="profile-img" class="rounded-circle profile-img-card"></a>
+          <form method="POST" class="form-signin">{% csrf_token %}
+
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
+            <input type="text" name="username" id="inputUsername" class="form-control form-group" placeholder="Username"
+              required autofocus value="{{form.initial.username}}">
+            <input type="email" name="email" id="inputEmail" class="form-control form-group" placeholder="Email address"
+              required autofocus value="{{form.initial.email}}">
+            <!-- <div class="form-group"></div>
+              <label for="dp">Change profile pic</label>
+              <input src="{{form.initial.dp.url}}" type="file" class="form-control" id="dp" name="dp" accept="image/*">
+            </div> -->
+            {% for field in form %}
+            <p>
+              {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
+
+            {% endfor %}
+            </p>
+
+
+            {% endfor %}
+            {% if form.non_field_errors %}
+            <div style="color: red;">
+              <p>{{form.non_field_errors}}</p>
+            </div>
+            {% endif %}
+
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+            <br />
+            <div>
+              <a href="/change-password" style="color: palegreen;text-align: center;background-color: black;">Change Password</a>
+              <br /><br />
+              <a href="/edit_dp" style="color: palegreen;text-align: center;background-color: black;">Change profile pic</a>
+            </div>
+          </form><!-- /form -->
+          <br/>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+<<<<<<< HEAD
+  <br /><br /><br /><br /><br /><br /><br />
+=======
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
+  {% endblock content %}

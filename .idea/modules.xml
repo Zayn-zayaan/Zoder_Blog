@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/iCoder.iml" filepath="$PROJECT_DIR$/.idea/iCoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Zoder.iml" filepath="$PROJECT_DIR$/.idea/Zoder.iml" />
     </modules>
   </component>
 </project>

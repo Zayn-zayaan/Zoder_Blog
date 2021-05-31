@@ -4,19 +4,30 @@ from django.contrib import messages
 from blog.templatetags import extras
 from django.db.models import Q
 from django.contrib.auth.models import User
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 
+
 def bloghome(request):
     allposts = Post.objects.all()
+    posts   = Post.objects.filter().order_by('-views')[:3]
 
-    context = {'allposts': allposts}
+    #pagination
+    paginator = Paginator(allposts, 2)
+    page = request.GET.get('page')
+    try:
+        allposts = paginator.page(page)
+    except PageNotAnInteger:
+        allposts = paginator.page(1)
+    except EmptyPage:
+        allposts = paginator.page(paginator.num_pages)
+
+    context = {'allposts': allposts, 'user':str(request.user), 'page':page, 'posts': posts}
     return render(request, 'blog/bloghome.html', context)
 
 
 def blogpost(request, slug):
-    print(slug)
     post     = Post.objects.filter(slug=slug).first()
     comments = BlogComment.objects.filter(post=post, parent=None)
     replies  = BlogComment.objects.filter(post=post).exclude(parent=None)
@@ -24,7 +35,6 @@ def blogpost(request, slug):
     is_liked = False
     if post.likes.filter(id=request.user.id).exists():
         is_liked = True
-
 
     for reply in replies:
         if reply.parent.Sno not in replyDict.keys():
@@ -34,10 +44,12 @@ def blogpost(request, slug):
 
     # for authenticate user
     user = request.user
+    author = post.author
+    abc = str(request.user)
     view = postviews.objects.filter(post=post).first()
     
     if user.is_authenticated:
-        username = user.username + " " + post.title
+        username = user.first_name + " " + post.title
         if postviews.objects.filter(post=post).exists():         
             if usercount.objects.filter(user=username).exists():
                 pass
@@ -88,7 +100,7 @@ def blogpost(request, slug):
     post.save()
 
     
-    context  = {'post': post, 'comments': comments, 'user': request.user, 'replyDict':replyDict, 'is_liked':is_liked, 'total_likes':post.total_likes(),}
+    context  = {'post': post, 'comments': comments, 'user': request.user, 'replyDict':replyDict, 'is_liked':is_liked, 'total_likes':post.total_likes(),'author':str(author), 'abc':abc}
 
     return render(request, 'blog/blogpost.html', context)
 
@@ -134,4 +146,11 @@ def like_post(request):
 
     return redirect(f"/blog/{post.slug}")
 
-
+def delete_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if post.author == str(request.user):
+        if request.method == 'POST':
+            post.delete()
+            messages.success(request, "You have successfully deleted your post")
+            return redirect('bloghome')
+    return redirect(f'/blog/{post.slug}')

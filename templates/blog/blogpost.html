@@ -2,11 +2,13 @@
 {% block js %}
 <script>
     Let previews = document.getElementsByClassName('preview');
-    Array.from(previews).forEach((element)=>{
+    Array.from(previews).forEach((element) => {
         element.innerHTML = element.innerText
     })
 </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css"
+    integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA=="
+    crossorigin="anonymous" />
 {% endblock js %}
 
 
@@ -14,19 +16,16 @@
 {% load humanize %}
 {% load extras %}
 
-<!-- <style>
-    .emojies {
-        border-radius: 10px;
-        width: 700px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        border-color: lightgray;
-    } -->
-<!-- </style> -->
+<style>
+body{
+    background-color: lightgray;
+}    
+</style> 
 <div class="container my-3">
     <h2 class="blog-post-title">{{ post.title }}</h2>
     <p class="blog-post-meta">{{ post.date }} by <a href="#">{{ post.author }}</a>
-      (<span>{{post.views}} views</span>) </p>
+        (<span>{{post.views}} view{{ post.views|pluralize}}</span>) </p>
+    <img style="height: 334px; width: 341px;" src = "{{ post.image.url }}" >
     <p class="preview">{{ post.content|safe }}</p>
     <hr>
     <span style="margin-left:4px"> {{total_likes}} Like{{ total_likes|pluralize}}</span>
@@ -36,17 +35,26 @@
             <form action=" /blog/likes" method="post">
                 {% csrf_token %}
                 {% if is_liked %}
-                    <input type="hidden" name="postSno" value="{{post.Sno}}">
-                    <button type="submit" class="btn btn-danger">DisLike</button>
-                {% else %} 
-                    <input type="hidden" name="postSno" value="{{post.Sno}}">
-                    <button type="submit" class="btn btn-primary">Like</button>
+                <input type="hidden" name="postSno" value="{{post.Sno}}">
+                <button type="submit" class="btn btn-danger">DisLike</button>
+                {% else %}
+                <input type="hidden" name="postSno" value="{{post.Sno}}">
+                <button type="submit" class="btn btn-primary">Like</button>
                 {% endif %}
             </form>
-
-        </div>
-        <div class="col-sm-5">
-            <a href="#commentform"><button type="text" class="btn btn-primary">Comment</button></a>
+            
+            <a href="#commentform"><button type="text" class="btn btn-primary my-2">Comment</button></a>
+           
+            <div class="my-2">
+                {% if post.author == abc %}
+                <a href="/blog/{{ post.slug }}/edit" class="btn btn-primary">Update</a>
+                <!-- delete post modal button-->
+                <button type="button" class="btn btn-danger my-2 my-sm-0 ml-2" data-toggle="modal"
+                    data-target="#deletepostmodal">
+                    Delete post
+                </button>
+                {% endif %}
+            </div>
         </div>
 
     </div>
@@ -54,6 +62,31 @@
     <br> <br>
 </div>
 
+<!-- delete post modal function -->
+<div class="modal fade" id="deletepostmodal" tabindex="-1" aria-labelledby="deletepostmodal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletepostmodaltitle">Delete post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/blog/{{ post.slug }}/delete" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        Are you sure you want to delete {{post.title}} ?
+                    </div>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <h4 style="font-family: cursive;">Comments ({{comments.count}})</h4>
@@ -61,42 +94,45 @@
     <div class="row my-3">
 
         <div class="col-md-1 circular">
-            <a href="{{ comment.user.profile.dp.url }}"><img style="width: 80px;height: 80px;" class="rounded mx-100 d-block" src="{{ comment.user.profile.dp.url }}" alt="user"></a> 
+            <a style="width: 80px;height: 80px;border-radius: 50%;display: inline-block;background-size: cover;background-position: center;background-image: url({{comment.user.profile.dp.url}});" href="{{ comment.user.profile.dp.url }}"></a>
         </div>
-        <div style="font-size: 17px;" class="col-md-11">
+        <div style="font-size: 17px;" class="col-md-11 mx-1" >
             <b>{{comment.user.username}}</b>
             <div>{{comment.comment}}</div>
             <span class="badge badge-secondary" style="opacity: 0.8;">{{comment.timestamp | naturaltime}}</span>
 
             <div class="my-2 replies">
-                {% for reply in  replyDict|get_val:comment.Sno %}
+                {% for reply in replyDict|get_val:comment.Sno %}
                 <div class="row my-3 ml-5">
                     <div class="col-md-1 circle">
-                        <a href="{{ reply.user.profile.dp.url }}"><img style="width: 55px;height: 55px;" class="rounded mx-100 d-block my-2" src="{{ reply.user.profile.dp.url }}" alt="user"></a>
+                        <a href="{{ reply.user.profile.dp.url }}"><img style="width: 55px;height: 55px;"
+                                class="rounded mx-100 d-block my-2" src="{{ reply.user.profile.dp.url }}"
+                                alt="user"></a>
                     </div>
-                    <div  style="font-size: 15px;" class="col-md-11">
+                    <div style="font-size: 15px;" class="col-md-11">
                         <b>{{reply.user.username}}</b>
                         <div>{{reply.comment}}</div>
-                        <span class="badge badge-secondary" style="opacity: 0.8;">{{reply.timestamp | naturaltime}}</span>
+                        <span class="badge badge-secondary" style="opacity: 0.8;">{{reply.timestamp |
+                            naturaltime}}</span>
                         <br>
                     </div>
                 </div>
-                
+
                 {% endfor %}
             </div>
 
             <div class="reply mx-0">
                 {% if user.is_authenticated %}
-                <button style="margin-left: 60px;" class="btn btn-sm btn-primary mt-1" type="button" data-toggle="collapse"
-                    data-target="#replyBox{{comment.Sno}}" aria-expanded="false"
+                <button style="margin-left: 60px;" class="btn btn-sm btn-primary mt-1" type="button"
+                    data-toggle="collapse" data-target="#replyBox{{comment.Sno}}" aria-expanded="false"
                     aria-controls="replyBox{{comment.Sno}}">
                     Reply
                 </button>
                 <div class="collapse" id="replyBox{{comment.Sno}}">
-                    
-                    
+
+
                     <div style="border: none;" class="card card-body my-2">
-                        
+
                         <form action="/blog/postComment" method="post">
                             {% csrf_token %}
 
@@ -110,16 +146,16 @@
                             <input type="hidden" name="postSno" value="{{post.Sno}}">
                             <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                         </form>
-                        
+
                     </div>
-                    
+
                 </div>
                 {% else %}
-                    <button class="btn btn-sm btn-primary mt-1" type="button" data-toggle="collapse"
-                    data-target="#replyBox{{comment.Sno}}" aria-expanded="false"
-                    aria-controls="replyBox{{comment.Sno}}" disabled>
-                        Login to reply
-                    </button>
+                <button class="btn btn-sm btn-primary mt-1" type="button" data-toggle="collapse"
+                    data-target="#replyBox{{comment.Sno}}" aria-expanded="false" aria-controls="replyBox{{comment.Sno}}"
+                    disabled>
+                    Login to reply
+                </button>
                 {% endif %}
 
             </div>
@@ -130,15 +166,15 @@
     <div class="my-2" id="commentform">
         {% if user.is_authenticated %}
         <form action=" /blog/postComment" method="post">
-        {% csrf_token %}
+            {% csrf_token %}
 
-        <div class="form-group">
-            <input type="text" class="emojies" name="comment" id="comment" placeholder="enter comment here">
-        </div>
+            <div class="form-group">
+                <input type="text" class="emojies" name="comment" id="comment" placeholder="enter comment here">
+            </div>
 
-        <input type="hidden" name="postSno" value="{{post.Sno}}">
-        <input type="hidden" name="parentSno" value="">
-        <button type="submit" class="btn btn-md btn-primary mb-5">Submit</button>
+            <input type="hidden" name="postSno" value="{{post.Sno}}">
+            <input type="hidden" name="parentSno" value="">
+            <button type="submit" class="btn btn-md btn-primary mb-5">Submit</button>
         </form>
         {% else %}
         <p style="width: 100%;text-align: center;"><b>Login to post a comment</b></p>
@@ -148,24 +184,13 @@
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"
+    integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA=="
+    crossorigin="anonymous"></script>
 <script type="text/javascript">
     $('.emojies').emojioneArea({
         pickerPosition: 'top'
     });
 </script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
-<script>
-    var input = document.querySelector('.emojies');
-    var picker = new EmojiButton({
-        popupButtonClasses: 'fa fa-smile-o',
-        position: 'top-right',
-   })
-    picker.on('emoji', function(emoji){
-        input.value += emoji;
-    })
-    input.addEventListener('click', function(){
-        picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
-    })
-</script> -->
+
 {% endblock %}

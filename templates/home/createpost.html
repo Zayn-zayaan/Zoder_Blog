@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 {% include "create_post_form" %}
+{% block js %}
+<script>
+    (document).ready(function(){
+        (".django-ckeditor-widget").css('width','100%')
+    });
+</script>
+{% endblock js %}
 {% block content %}
 
 
-<div style="width: 870px;" class="container offset-lg-3 mt-3 ">
-    <form action={% url 'createpost' %} method="post" enctype="multipart/form-data">
+<div style="width: fit-content;" class="container offset-lg-3 mt-3 ">
+    <form action="{% url 'createpost' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         
         <h3>Create your post</h3>
@@ -20,13 +27,12 @@
             <label for="image">Choose an image if u want to</label> <br>
             <input type="file" id="image" name="image" accept="image/*">
         </div>
-        {% comment %} {% load static %}
-        <script src={% static 'js/tinyinject.js' %} type="text/javascript"></script> {% endcomment %}
+
         <div class="form-group">
             <label for="content">Content</label>
             {{form.content}}
-            {{ form.media }}
-            {% comment %} <textarea class="form-control" id="content" name="content" rows="6" required></textarea> {% endcomment %}
+            {{form.media }}
+            
         </div>
 
         <button type="submit" class="btn btn-primary mb-4">Submit</button>
@@ -34,29 +40,5 @@
 
 
 </div>
-<!-- <script type="text/javascript">
-    var script = document.createElement('script');
-    //script.type = 'text/javascript';
-    script.src = "https://cdn.tiny.cloud/1/0fgm07t5z8oslu7v7hyaod179rqu0e2dqlvr6epj1drzoulq/tinymce/5/tinymce.min.js";
-    document.head.appendChild(script);
-
-    script.onload = function () {
-        tinymce.init({
-            selector: '#content',
-            height: 456,
-            plugins: [
-                'advlist autolink link image lists charmap print preview hr anchor pagebreak',
-                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-                'table emoticons template paste help'
-            ],
-            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist outdent indent | link image | print preview media fullpage | ' +
-                'forecolor backcolor emoticons | help',
-            menu: {
-                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
-            },
-            menubar: 'favs file edit view insert format tools table help',
-        });
-    }
-</script> -->
+<br /><br /><br />
 {% endblock %}

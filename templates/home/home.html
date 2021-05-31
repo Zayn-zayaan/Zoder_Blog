@@ -1,23 +1,205 @@
 {% extends 'base.html' %}
+{% block js %}
+<script>
+    Let previews = document.getElementsByClassName('preview');
+    Array.from(previews).forEach((element) => {
+        element.innerHTML = element.innerText
+    })
+</script>
+{% endblock js %}
 {% block homeactive %} active {% endblock %}
 {% block content %}
-    <div class="container my-4" >
-        <div style="padding-right: 35px; padding-left: 35px" class="jumbotron pt-4 pb-4">
-            <h1 class="display-4">Welcome!</h1>
-            <p class="lead">This is my website u can find great stuff here</p>
-            <hr class="my-2">
-            <a class="btn btn-primary btn-lg" href="blog/" role="button">See Blog</a>
-        </div>
-        <h2>Popular Blogposts: </h2>
-        <div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary">World</strong>
-              <h3 class="mb-0">Featured post</h3>
-                  <div class="mb-1 text-muted">Nov 12</div>
-                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="stretched-link">Continue reading</a>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
+    body {
+        background: url('/static/img/janko-ferlic-sfL_QOnmy00-unsplash.jpg') 0 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-color: azure;
+    }
+
+    @media only screen and (max-width:750px) {
+
+        .card {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (min-width:700px) {
+
+        .card {
+            width: 70%;
+        }
+        .outdiv {
+            width: 77%;
+        }
+        .indiv {
+            width: 60%;
+        }
+    }
+
+    @media(max-width: 700px) {
+        .outdiv {
+            width: 100%;
+        }
+        .indiv{
+            width: 100%;
+        }
+    }
+
+
+    .jumbotron {
+        background: rgba(204, 204, 204, 0.6);
+        padding: 35px;
+        margin: auto;
+    }
+
+
+    h3 {
+        color: white;
+    }
+
+    h6 {
+        display: inline-block;
+        text-align: center;
+    }
+
+    i {
+        display: block;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    h2 {
+        font-family: Adamina;
+    }
+
+    .card {
+        background: rgba(0, 0, 0, 0.6);
+        margin: auto;
+
+    }
+
+    .card-img {
+        background-image: url({{post.image.url}});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .social {
+        margin: 0 5px 0 5px;
+    }
+
+    .font {
+        font-family: Adamina;
+    }
+    .outdiv{
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        align-items: center;
+        color: white;
+        margin: auto;
+    }
+    .indiv{
+        margin: auto;
+    }
+</style>
+<div style="align-items: center;" class="container my-4">
+    <br /><br /><br /><br /><br />
+    <div class="jumbotron pt-5 pb-5">
+        <h1 class="display-4">Welcome!</h1>
+        <p style="font-weight: 400;" class="lead">This is a blog website , you can gain and share your knowledge by
+            reading and writing blogs here and motivate blog writers by liking their post if you find them useful.This
+            is an open source project you can contribute by clicking <a
+                href="https://github.com/Zayn-zayaan/Zoder_Blog">here</a> </p><br />
+        <hr class="my-2">
+        <a class="btn btn-primary btn-lg" href="blog/" role="button">See Blog</a>
+    </div><br /><br /><br /><br />
+
+    <div class="outdiv">
+        <div class="indiv">
+            <a href="/static/img/IMG_20210330_021416.jpg"><img
+                    style="display: block;width: 12rem;height: 12rem;border-radius: 100%;margin: 30px auto 10px auto;"
+                    src="/static/img/IMG_20210330_021416.jpg" alt="..."></a>
+            <h1 style="font-family: 'Sofia, sans-serif;text-align: center;">Zain zahid</h1>
+            <div style="text-align: center;" class="social-links">
+                <i style="width: 100%;" class="social fas fa-envelope">
+                    <h6>zaynzahid2000@gmail.com</h6>
+                </i>
+                <i style="width: 100%;" class="social fab fa-github">
+                    <h6>github.com/Zayn-zayaan</h6>
+                </i>
+                <i class="social fas fa-phone-alt">
+                    <h6>+91-7817923254</h6>
+                </i>
+            </div><br><br>
+
+            <div class="font skills">
+                <h2 style="font-family: 'Adamina;">Skills :</h2>
+                <ul style="width: fit-content;list-style-position: inside;list-style-type: disclosure-closed;">
+                    <li style="margin: 1.5em 0 1em 0;">
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">Webdevelopment: </h6>
+                        <ul style="list-style: disc;list-style-position: inside;margin-left: 1em;">
+                            <li> Frontend: Html, css, JavaScript, bootstrap etc.</li>
+                            <li>Backend: Django and mongodb.</li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 1em;">
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">Programming Languages: </h6> C, C++, and
+                        Python.
+                    </li>
+                    <li style="margin-bottom: 1em;">
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">Version control system: </h6> Git and Github.
+                    </li>
+                    <li>
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">IT Constructs: </h6> DS and Algorithms, OOPS
+                        and OS.
+                    </li>
+                </ul>
             </div>
-        </div>
+            <div style="margin-top: 2em;width: 100%;" class="font skills">
+                <h2 style="font-family: 'Adamina;">Projects :</h2>
+                <ul style="list-style: disclosure-closed;width: fit-content;list-style-position: inside;">
+                    <li style="margin: 1.5em 0 1em 0;">
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">Zoder blog website: </h6>
+                        <p style="width: fit-content;">developed a blog website using django as backend with user authentication system. Added many
+                            features like blog views, likes , comments, replies ,user account panel and many more and
+                            still updating it.<br>
+                            Website link: <a
+                                href="https://zoderbook.pythonanywhere.com/">Click here</a>
+                        </p>
+                    </li>
+                    <li>
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">PyQt5 Web Browser: </h6>
+                        <p>Build a web browser that includes all the essential elements like back, forward, reload
+                            buttons with Split view feature and add styles using Qt Style sheets.</p>
+                    </li>
+                </ul>
+            </div>
+            <div style="margin-top: 2em;" class="font skills">
+                <h2 style="font-family: 'Adamina;">Education :</h2>
+                <ul style="list-style: disclosure-closed;width: fit-content;list-style-position: inside;">
+                    <li style="margin: 1.5em 0 1em 0;">
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">Intermediate (XII): </h6>
+                        <p> From Milton public school, Agra.<br>93%(PCM)</p>
+                    </li>
+                    <li>
+                        <h6 style="font-weight: 600;letter-spacing: 2px;">Graduation: </h6>
+                        <p>Btech(MECH)<br>JAMIA MILLIA ISLAMIA, New Delhi<br>(graduation year: 2023)</p>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+        
     </div>
-{% endblock %}
+
+    {% endblock %}

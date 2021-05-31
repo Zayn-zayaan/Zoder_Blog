@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -5,136 +6,193 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>iCoder</title>
+  <title>Zoder</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">iCoder</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+<body style="width:100%;box-sizing: border-box;" class="img-fluid">
+  <div style="width: 100%;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width:100%;">
+      <a class="navbar-brand" href="/">Zoder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item {% block homeactive %} {% endblock %}">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item {% block aboutactive %} {% endblock %}">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item {% block blogactive %} {% endblock %}">
-          <a class="nav-link" href="/blog">Blog</a>
-        </li>
-        <li class="nav-item {% block contactactive %} {% endblock %}">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
-      </ul>
-      <div class="ml-auto form-inline">
-        <form method="get" action="/search" class=" my-2 my-lg-0 mr-3">
-          <input style="width: 600px; margin-right: 20px;" class="form-control" type="search" placeholder="Search..." name="query"
-            id="query" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Search</button>
-        </form>
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mr-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span style="color: mintcream;font-family: cursive;letter-spacing: 1px;">Welcome {{request.user}}</span> 
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/createpost">Create Post</a>
-              <a class="dropdown-item" href="/logout">Logout</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item {% block homeactive %} {% endblock %}">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item {% block aboutactive %} {% endblock %}">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item {% block blogactive %} {% endblock %}">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+          <li class="nav-item {% block contactactive %} {% endblock %}">
+            <a class="nav-link" href="/contact">Contact</a>
           </li>
         </ul>
+        <div class="ml-auto form-inline">
+          <form method="get" action="/search" class=" my-2 my-lg-0 mr-3">
+            <input id="searchform" class="form-control" type="search" placeholder="Search..." name="query" id="query"
+              aria-label="Search">
+            <button id="sbtn" class="sbtn btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          {% if request.user.is_authenticated %}
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mr-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span style="color: mintcream;font-family: cursive;letter-spacing: 1px;">Welcome {{request.user}}</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/createpost">Create Post</a>
+                <a class="dropdown-item" href="/account">Account</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+            </li>
+          </ul>
 
 
+<<<<<<< HEAD
+          {% else %}
+          <!-- Button trigger  Sign upmodal -->
+          <button type="button" class="rbton btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
+            data-target="#signupmodal">
+            Sign up
+          </button>
+          <!-- Button trigger  login modal -->
+          <button type="button" class="rbton btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
+            data-target="#loginmodal">
+            Login
+          </button>
+          <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+          {% endif %}
+        </div>
+=======
         {% else %}
         <!-- Button trigger  Sign upmodal -->
         <button type="button" class="btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
           data-target="#signupmodal">
           Sign up
         </button>
-        <!-- Button trigger  Sign upmodal -->
+        <!-- Button trigger  login modal -->
         <button type="button" class="btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal"
           data-target="#loginmodal">
           Login
         </button>
         <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
         {% endif %}
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
+      </div>
+    </nav>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>Message!-</strong> {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+
+
+    <!-- Sign up Modal -->
+    <div class="modal fade" id="signupmodal" tabindex="-1" aria-labelledby="signupmodal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupmodaltitle">Sign up to add comments...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/signup" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="username">Username(cannot contain spaces)</label>
+                <input type="text" class="form-control" id="username" name="username"
+                  placeholder="Choose a unique username (Lowercase & alphanumeric)" required>
+              </div>
+              <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name"" name=" first_name"" placeholder="First Name"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last Name"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="password">Choose a Password</label>
+                <input type="password" class="form-control" id="password" name="password"
+                  placeholder="Choose your password" required>
+              </div>
+              <div class="form-group">
+                <label for="pass2">Confirm password</label>
+                <input type="password" class="form-control" id="pass2" name="pass2"
+                  placeholder="Enter your password again" required>
+              </div>
+              <div class="form-group">
+                <label for="dp">Upload a profile pic</label>
+                <input type="file" class="form-control" id="dp" name="dp" accept="image/*" required>
+              </div>
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
-
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-    <strong>Message!-</strong> {{ message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  {% endfor %}
-
-
-  <!-- Sign up Modal -->
-  <div class="modal fade" id="signupmodal" tabindex="-1" aria-labelledby="signupmodal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="signupmodaltitle">Sign up to add comments...</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/signup" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" name="username"
-                placeholder="Choose a unique username (Lowercase & alphanumeric)" required>
-            </div>
-            <div class="form-group">
-              <label for="fname">First Name</label>
-              <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required>
-            </div>
-            <div class="form-group">
-              <label for="lname">Last Name</label>
-              <input type="text" class="form-control" id="lname" name="lname" placeholder="last Name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="password">Choose a Password</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Choose your password"
-                required>
-            </div>
-            <div class="form-group">
-              <label for="pass2">Confirm password</label>
-              <input type="password" class="form-control" id="pass2" name="pass2"
-                placeholder="Enter your password again" required>
-            </div>
-            <div class="form-group">
-              <label for="dp">Upload a profile pic</label>
-              <input type="file" class="form-control" id="dp" name="dp" accept="image/*" required>
-            </div>
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-        </div>
-      </div>
-    </div>
+<<<<<<< HEAD
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginmodaltitle">Login here</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/login" method="post">{% csrf_token %}
+              <div class="form-group">
+                <label for="loginusername">Username</label>
+                <input type="text" class="form-control" id="loginusername" name="loginusername"
+                  placeholder="Enter username" required>
+              </div>
+              <div class="form-group">
+                <label for="loginpass">Password</label>
+                <input type="password" class="form-control" id="loginpass" name="loginpass"
+                  placeholder="Enter your password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <br /><br />
+              <a href="/password-reset">Forgot password?</a>
+              <br />
+              <a href='/send_email'>Verify Email</a> if not already.
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+=======
   </div>
   <!-- Login Modal -->
   <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
@@ -159,20 +217,26 @@
                 placeholder="Enter your password" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <br /><br />
+            <a href="/password-reset">Forgot password?</a>
+            <br />
+            <a href='send_email/'>Verify Email</a> if not already.
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+>>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
 
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  {% block content %}
+    {% block content %}
 
-  {% endblock %}
-  {% block js %}
-  {% endblock js %}
+    {% endblock %}
+    {% block js %}
+    {% endblock js %}
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -184,6 +248,58 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">blog</a></li>
+            <li><a href="/about">about us</a></li>
+            <li><a href="/contact">contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col" style="margin-bottom: 50px;">
+          <h4>Contact info</h4>
+          <div class="con">
+            <span class="fas fa-user-circle"></span>
+            <span style="margin-left: 8px;" class="text">Zain zahid</span>
+          </div>
+          <div class="con">
+            <span class="fas fa-envelope"></span>
+            <span class="text" style="margin-left: 8px;">zaynzahid2000@gmail.com</span>
+          </div>
+          <div class="con">
+            <span class="fas fa-phone-alt"></span>
+            <span style="margin-left: 8px;" class="text">+91-7817923254</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100006147855042"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/ZayaanZayn"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/Zayn-zayaan"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/zayn_zayaan_khan/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/zain-zahid-99a9141b2/"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <center>
+        <p style="color: white;"><b>DISCLAIMER: </b>This website do not accept the faulty posts or
+          posts which can create misconception.</p><br />
+        <p style="color: white;">CopyRight © 2021 Digital All Rights Reserved</p>
+      </center>
+    </div>
+  </footer>
+  <!-- Footer -->
+
+
+  </div>
 </body>
 
 </html>

@@ -81,7 +81,7 @@
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
-      <facet id="iCoder/invalid/Django" />
+      <facet id="Zoder/invalid/Django" />
     </ignored-facets>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -100,22 +100,22 @@
         <subPane>
           <expand>
             <path>
-              <item name="iCoder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iCoder" type="462c0819:PsiDirectoryNode" />
+              <item name="Zoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Zoder" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="iCoder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iCoder" type="462c0819:PsiDirectoryNode" />
+              <item name="Zoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Zoder" type="462c0819:PsiDirectoryNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="iCoder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iCoder" type="462c0819:PsiDirectoryNode" />
+              <item name="Zoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Zoder" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="iCoder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iCoder" type="462c0819:PsiDirectoryNode" />
+              <item name="Zoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Zoder" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -152,11 +152,11 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="base.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/iCoder/templates/base.html" useBuiltInWebServerPort="true">
+    <configuration name="base.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Zoder/templates/base.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="iCoder" type="Python.DjangoServer" factoryName="Django server">
-      <module name="iCoder" />
+    <configuration name="Zoder" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Zoder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -274,7 +274,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iCoder/urls.py">
+    <entry file="file://$PROJECT_DIR$/Zoder/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" selection-start-line="18" selection-end-line="18" />

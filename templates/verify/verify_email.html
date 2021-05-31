@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Change Password Page{% endblock title %}
+
+{% block content %}
+<style>
+    body,
+    html {
+        background-image: url('https://i.imgur.com/xhiRfL6.jpg');
+        height: 100%;
+    }
+
+    #profile-img {
+        height: 180px;
+    }
+
+    .h-80 {
+        height: 80% !important;
+    }
+</style>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container h-80">
+        <div class="row align-items-center h-100">
+            <div class="col-3 mx-auto">
+                <br /><br /><br />
+                <div style="width: 12rem;margin-left: -3rem;" class="text-center">
+                    <h3 style="color:navajowhite"><i>Verify Email</i></h3>
+                    <img id="profile-img" class="rounded-circle profile-img-card"
+                        src="https://i.imgur.com/6b6psnA.png" />
+                    
+                    <form method="POST" class="form-signin">{% csrf_token %}
+
+                        <input name="email" class="form-control form-group" placeholder="Email address" 
+                        type="email" id="email" required autofocus>
+                        <button class="btn btn-md btn-primary" type="submit">Send verification link</button>
+                    </form><!-- /form -->
+                </div>
+            </div>
+        </div>
+    </div>
+     <br /><br /><br /><br /><br /><br /><br />
+    {% endblock content %}

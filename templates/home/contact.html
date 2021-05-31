@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 {% block contactactive %} active {% endblock %}
 {% block content %}
-<div style="width: 800px;" class="container offset-lg-3 mt-3 ">
-    <form method="post" action="/contact">
+<style>
+    #contactform {
+        width: 80%;
+        margin: auto;
+    }
+
+
+ 
+</style>
+<div class="container offset-lg-3 mt-3 ">
+    <form id="contactform" method="post" action="/contact">
         {% csrf_token %}
-        <h3>Contact iCoder admin</h3>
-        <div class="form-group mt-4">
+        <h3 style="text-align: center;">Contact Zoder admin</h3>
+        <div id="contactform" class="form-group mt-4">
             <label for="name">Names</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Your Name...">
         </div>
-        <div class="form-group">
+        <div id="contactform" class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email...">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-        <div class="form-group">
+        <div id="contactform" class="form-group">
             <label for="phone">Phone number</label>
             <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your cell no....">
         </div>
-        <div class="form-group">
+        <div id="contactform" class="form-group">
             <label for="content">Content</label>
             <textarea class="form-control" id="content" name="content" rows="6"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary mb-4">Submit</button>
+        <div id="contactform">
+            <button type="submit" class="btn btn-primary mb-4">Submit</button>
+        </div>
+        
     </form>
 </div>
+<br /><br /><br />
 {% endblock %}

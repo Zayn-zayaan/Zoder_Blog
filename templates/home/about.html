@@ -1,5 +1,43 @@
 {% extends 'base.html' %}
 {% block aboutactive %} active {% endblock %}
 {% block content %}
-This is about page
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+<style>
+    body {
+        background-image: url('/static/img/kelly-sikkema-Rq1MLxP5RgI-unsplash.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    
+        #par{
+        text-align: center;
+        margin-top: 18rem;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 550; 
+        margin-left: 11rem;
+        margin-right: 11rem;
+        font-family: Sofia;
+        font-size: x-large;
+        padding:2px;
+        background: rgba(222, 184, 135, 0.7);
+    }
+    @media(max-width: 1200px){
+        #par{
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 5rem;
+            
+
+        }
+    }
+
+</style>
+<div id=par>
+    <p>Hello and Welcome to my Zoder blog website. This is Zayn zahid ,i had created this blog site for one of my project but 
+        now i have upgraded it and added many features that came in my mind and made it useful for users.I am currently pursuing Btech from JMI.</p>
+    <p style="margin-top: 5rem;">You can send your suggestions by filling contact form. Any suggestion from u'r side is most welcome</p>
+</div>
+<br /><br />
 {% endblock %}
