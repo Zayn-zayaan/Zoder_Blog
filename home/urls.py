@@ -10,7 +10,7 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('signup', handlesignup, name='handlesignup'),
     path('login', handlelogin, name='handlelogin'),
-    path('logout', handlelogout, name='handlelogout'),
+    path('logout/', handlelogout, name='handlelogout'),
     path('createpost/', createpost, name='createpost'),
     path('account/', edituser, name='edituser'),
     path('change-password',

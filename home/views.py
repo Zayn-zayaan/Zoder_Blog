@@ -12,7 +12,6 @@ from.forms import create_profile_form, userform, create_post_form, Update_post_f
 from django.contrib.auth import get_user_model
 from django_email_verification import send_email
 from django.views.decorators.csrf import csrf_exempt
-<<<<<<< HEAD
 
 
 import threading
@@ -27,8 +26,6 @@ class Emailthread(threading.Thread):
 
     def run(self):
         send_email(self.user_v)
-=======
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
 
 # HTML Pages
 
@@ -37,11 +34,7 @@ def home(request):
     posts   = Post.objects.filter().order_by('-views')[:2]
     context['posts'] = posts
     return render(request, 'home/home.html',context)
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
 
 def about(request):
     return render(request, 'home/about.html')
@@ -131,18 +124,13 @@ def handlesignup(request):
             f.last_name = lname
             f.save()
             obj = form.save(commit=False)
-            obj.user = form1.save()   
+            obj.user = form1.save()
             obj.save()
 
             user_verify = User.objects.get(email=email,username=username)
             user_verify.is_active = False
-<<<<<<< HEAD
             send_email_task(user_verify)
             messages.error(request, "Your account has created. Please verify your email.We have emailed you a verification link. You will get that within 30 mins.")
-=======
-            messages.error(request, "Please verify your email.We have emailed you a verification link.")
-            send_email(user_verify)
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
             return redirect('home')
 
         else:
@@ -166,11 +154,7 @@ def handlelogin(request):
             messages.success(request, "Successfully logged in")
             return redirect('home')
         elif user_verify.is_active == False:
-<<<<<<< HEAD
             messages.error(request, "Please verify your email first to login.")
-=======
-            messages.error(request, "Please verify your email.We have emailed you a verification link.")
->>>>>>> 1f92c7e (added update and delete post functionality ,email verification ,account updatation etc.)
             return redirect('home')
         else:
             messages.error(request, "Invalid Credentials: Please try again")

@@ -150,18 +150,18 @@ MESSAGE_TAGS = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# import socket
-# socket.getaddrinfo('smtp.gmail.com', 587)
+import socket
+socket.getaddrinfo('smtp.gmail.com', 587)
 # EMAIL_BACKEND
  
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = socket.gethostbyname('smtp.gmail.com')
+# EMAIL_HOST = socket.gethostbyname('smtp.sendgrid.net')
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'zoderadmn781@gmail.com' #email address using for sending an email
-EMAIL_HOST_PASSWORD = 'youremail-app-password'
+EMAIL_HOST_USER = 'your email'
+EMAIL_HOST_PASSWORD = 'your password'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Zoder Team <noreply@zoderadmin.com>'
+DEFAULT_FROM_EMAIL = 'Zoder Team <zoderadmn781@gmail.com>'
 
 #email verification
 
